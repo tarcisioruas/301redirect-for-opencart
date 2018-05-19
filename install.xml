@@ -2,7 +2,7 @@
 <modification>
   <name>301 redirect for Opencart 3.0.x</name>
   <code>301redirect</code>
-  <version>0.1.0-Beta</version>
+  <version>0.1.1-Beta</version>
   <author>Tarcisio Ruas</author>
   <link>http://www.digitaldev.com.br</link>
 
