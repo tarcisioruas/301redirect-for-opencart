@@ -2,7 +2,7 @@
 <modification>
   <name>301 redirect for Opencart 3.0.x</name>
   <code>301redirect</code>
-  <version>0.1.1-Beta</version>
+  <version>0.1.2-Beta</version>
   <author>Tarcisio Ruas</author>
   <link>http://www.digitaldev.com.br</link>
 
@@ -48,19 +48,26 @@
     <operation>
       <search><![CDATA[public function index() {]]></search>
       <add position="before"><![CDATA[
-    private function redirect301($route)
+    private function redirect301($parts)
     {
-      $this->load->model('extension/seo/301redirect');
-      $redirect_info = $this->model_extension_seo_301redirect->getRedirectByOrigin($route);
-      
-      if ($redirect_info) {
-        $scheme = $this->request->server['REQUEST_SCHEME'];
-        $host = $this->request->server['HTTP_HOST'];
-        $port = $this->request->server['SERVER_PORT'] != '80' ? ':' . $this->request->server['SERVER_PORT'] : null;  
-        $url = $scheme . '://' . $host . $port . '/' . $redirect_info['url_to'];
+        $boRedirect = false;
+        $this->load->model('extension/seo/301redirect');
+		
+        foreach($parts AS $key => $part) {
+            $redirect_info = $this->model_extension_seo_301redirect->getRedirectByOrigin($part);
+            if ($redirect_info) {
+                $boRedirect = true;
+                $parts[$key] =  $redirect_info['url_to'];
+            }	
+        }
 
-        $this->response->redirect($url, 301);
-      }
+        if ($boRedirect) {
+            $scheme = $this->request->server['REQUEST_SCHEME'];
+            $host = $this->request->server['HTTP_HOST'];
+            $port = $this->request->server['SERVER_PORT'] != '80' ? ':' . $this->request->server['SERVER_PORT'] : null;  
+            $url = $scheme . '://' . $host . $port . '/' . implode('/', $parts);
+            $this->response->redirect($url, 301);
+        }
     }
     ]]></add>
     </operation>
@@ -69,9 +76,9 @@
   <file path="catalog/controller/startup/seo_url.php">
     <operation>
       <search><![CDATA[foreach ($parts as $part) {]]></search>
-      <add position="after"><![CDATA[
+      <add position="before"><![CDATA[
             if ($this->config->get('module_301redirect_status')) {
-                $this->redirect301($part);
+                $this->redirect301($parts);
             }
       ]]></add>
     </operation>

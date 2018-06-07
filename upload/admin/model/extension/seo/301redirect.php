@@ -28,7 +28,7 @@ class ModelExtensionSeo301redirect extends Model {
 
 	public function existsUrlFrom($url_from) 
 	{
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "301redirect WHERE url_from = '" . $this->db->scape($url_from) . "'");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "301redirect WHERE url_from = '" . $this->db->escape($url_from) . "'");
 		return $query->row['total'] > 0;
 	}
 	
@@ -37,7 +37,7 @@ class ModelExtensionSeo301redirect extends Model {
 		
 		$sql = "SELECT * FROM " . DB_PREFIX . "301redirect";
 
-		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+		if (isset($data['sort'])) {
 			$sql .= " ORDER BY " . $data['sort'];
 		} else {
 			$sql .= " ORDER BY redirect_id";

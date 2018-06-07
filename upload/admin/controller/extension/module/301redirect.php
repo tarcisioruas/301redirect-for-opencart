@@ -252,7 +252,7 @@ class ControllerExtensionModule301redirect extends Controller {
 		$this->load->language('extension/module/301redirect');
 
 		$this->load->model('setting/setting');
-		$data['module_301redirect_status'] = $this->model_setting_setting->getSettingValue('module_301redirect_status', $this->request->get['store_id']);
+		$data['module_301redirect_status'] = $this->model_setting_setting->getSettingValue('module_301redirect_status');
 		
 		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
 			$data['module_301redirect_status'] = $this->request->post['module_301redirect_status'];
@@ -381,7 +381,7 @@ class ControllerExtensionModule301redirect extends Controller {
 		}
 
 		$pagination = new Pagination();
-		$pagination->total = $blog_total;
+		$pagination->total = $redirects_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_limit_admin');
 		$pagination->url = $this->url->link('extension/module/301redirect', 'user_token=' . $this->session->data['user_token'] . $url . '&page={page}', true);
