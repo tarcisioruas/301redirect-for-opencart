@@ -263,7 +263,7 @@ class ControllerExtensionModule301redirect extends Controller {
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
-			$sort = 'id';
+			$sort = 'redirect_id';
 		}
 
 		if (isset($this->request->get['order'])) {
@@ -367,8 +367,8 @@ class ControllerExtensionModule301redirect extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$data['sort_url_from'] = $this->url->link('extension/module/301redirect', 'user_token=' . $this->session->data['user_token'] . '&sort=id.title' . $url, true);
-		$data['sort_url_to'] = $this->url->link('extension/module/301redirect', 'user_token=' . $this->session->data['user_token'] . '&sort=i.sort_order' . $url, true);
+		$data['sort_url_from'] = $this->url->link('extension/module/301redirect', 'user_token=' . $this->session->data['user_token'] . '&sort=sort_url_from' . $url, true);
+		$data['sort_url_to'] = $this->url->link('extension/module/301redirect', 'user_token=' . $this->session->data['user_token'] . '&sort=sort_url_to' . $url, true);
 
 		$url = '';
 
