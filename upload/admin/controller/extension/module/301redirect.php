@@ -211,9 +211,7 @@ class ControllerExtensionModule301redirect extends Controller {
 
 		$this->load->model('design/seo_url');
 
-		$this->request->post['url_from'];
-		$this->request->post['url_to'];
-
+		
 		if (empty($this->request->post['url_from'])) {
 			$this->error['url_from'] = $this->language->get('error_url_from_empty');
 		}
@@ -226,13 +224,9 @@ class ControllerExtensionModule301redirect extends Controller {
 			$this->error['url_from'] = $this->language->get('error_url_from_exists');
 		}
 
-		if ($this->model_extension_seo_301redirect->existsUrlFrom($this->request->post['url_from'])) {
-			$this->error['url_from'] = $this->language->get('error_url_from_exists');
-		}
-
 		$seo_urls = $this->model_design_seo_url->getSeoUrlsByKeyword($this->request->post['url_to']);
 		if (count($seo_urls) == 0) {
-			$this->error['url_from'] = $this->language->get('error_url_to_dont_exists');
+			$this->error['url_from'] = $this->language->get('error_url_to_dont_exist');
 		}
 
 		return !$this->error;

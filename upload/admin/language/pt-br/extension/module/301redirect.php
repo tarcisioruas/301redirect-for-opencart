@@ -32,5 +32,5 @@ $_['help_keyword']           = 'Do not use spaces, instead replace spaces with -
 $_['error_url_from_empty']       = 'Url de origem deve ser informada.';
 $_['error_url_to_empty']         = 'Url de destino deve ser informada.';
 $_['error_url_from_exists']      = 'Uma Ulr de origem assim como essa já foi cadastrada anteriormente.';
-$_['error_url_to_dont_exists']   = 'Url de destino não existe.';
+$_['error_url_to_dont_exist']    = 'Url de destino não existe.';
 $_['error_permission']           = 'Alerta: Você não tem permissão para editar esse redirecionamento!';

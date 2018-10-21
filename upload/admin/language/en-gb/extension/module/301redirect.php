@@ -32,5 +32,5 @@ $_['help_keyword']           = 'Do not use spaces, instead replace spaces with -
 $_['error_url_from_empty']       = 'The URL From is required.';
 $_['error_url_to_empty']         = 'The URL To is required.';
 $_['error_url_from_exists']      = 'This URL From was registrated already.';
-$_['error_url_to_dont_exists']   = 'This URL To don\'t exist.';
+$_['error_url_to_dont_exist']    = 'This URL To don\'t exist.';
 $_['error_permission']           = 'Warning: You haven\'t permission to edit this redirect!';
